@@ -1,0 +1,19 @@
+{
+  "files.associations": {
+    "*.ejs": "html",
+    "*.jsx": "javascriptreact",
+    "*.js": "javascript",
+    "*.rmd": "markdown",
+    "*.json": "jsonc",
+    "*.html": "html",
+    "*.md": "markdown",
+    "*.sh": "shellscript",
+    "*.cpp": "cpp",
+    "*.s": "asm-collection",
+    "*.yml": "yaml",
+    "*.wasm": "wasm",
+    "*.asm": "asm-intel-x86-generic",
+    ".env": "env",
+    "iostream": "cpp"
+  }
+}
