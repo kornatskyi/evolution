@@ -77,12 +77,12 @@ int main() {
 				window.close();
 		}
 
+		window.clear();
+
 		/////////////////////////////////////////////////
 		// All updates should be happening in this block.
 		/////////////////////////////////////////////////
 
-		// draw it
-		window.clear();
 		window.draw(ui);
 
 		if (fpsRenderPeriod > 1) {
