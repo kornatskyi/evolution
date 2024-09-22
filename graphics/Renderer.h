@@ -1,4 +1,5 @@
-﻿#include <SFML/Graphics.hpp>
+#pragma once
+#include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -6,12 +7,9 @@
 #include <vector>
 #include <filesystem>
 #include <memory>
-#include "Renderer.h"
+#include "UI.h"
 
+constexpr int WIDTH = 1600;
+constexpr int HEIGHT = 900;
 
-
-
-int main() {
-	render();
-	return 0;
-}
+void render();
