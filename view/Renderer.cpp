@@ -9,7 +9,7 @@ void render()
   window.setVerticalSyncEnabled(true); // sync with graphics card refresh rate
   window.setPosition(sf::Vector2i(100, 400));
 
-  // Clock for messuring FPS
+  // Clock for measuring FPS
   sf::Clock clock;
   float lastTime = 0;
   float currentFps = 0;
