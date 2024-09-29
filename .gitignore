@@ -36,3 +36,5 @@
 .vs
 x64
 lib/SFML-2.6.1
+
+build/

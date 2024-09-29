@@ -1,7 +1,6 @@
 # Evolution 🧬
 
-Requirements:
-
+## Requirements:
 1. Some constrained area for creatures to move in
 2. Creatures:
    1. Creatures can move around inside the area boundaries
@@ -17,7 +16,7 @@ Requirements:
    2. Maybe prevent creatures from going through each other. Make it so creatures can detect collision with one another and collision with food or other object in the simulation.
 
 
-
+## Implementation
 Entities:
 Food:
 properties:
@@ -37,4 +36,6 @@ move()
 Post simulation:
 Genome visualizer
 Generate simulation history
-Be able to visualize simulation data
+Be able to visualize simulation 
+
+

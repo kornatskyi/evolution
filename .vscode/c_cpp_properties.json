@@ -1,0 +1,25 @@
+{
+    // This is Intelisense configuration
+    // All comiplation comfigs are inside CMakeLists.txt
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/lib/SFML-2.6.1/include",
+                 "${workspaceFolder}/graphics"
+            ],
+            "defines": [
+                "_DEBUG",
+                "_CONSOLE",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "compilerPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64\\cl.exe",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ],
+    "version": 4
+}
