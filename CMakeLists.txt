@@ -11,17 +11,32 @@ set(SFML_DIR "${CMAKE_SOURCE_DIR}/lib/SFML-2.6.1/lib/cmake/SFML")
 # Find the SFML package
 find_package(SFML 2.6 COMPONENTS graphics window system audio REQUIRED)
 
+# Collect all .cpp files in the 'view' folder
+file(GLOB VIEW_SRC
+    "view/*.cpp"
+)
+# Collect all .cpp files in the 'controller' folder
+file(GLOB CONTROLLER_SRC
+    "controller/*.cpp"
+)
+# Collect all .cpp files in the 'model' folder
+file(GLOB MODEL_SRC
+    "model/*.cpp"
+)
+
 # Add the executable
 add_executable(evolution
     main.cpp
-    graphics/Renderer.cpp
-    graphics/UI.cpp
-    # Add other source files as needed
+    ${VIEW_SRC}
+    ${CONTROLLER_SRC}
+    ${MODEL_SRC}
 )
 
 # Include directories
 target_include_directories(evolution PRIVATE
-    "${CMAKE_SOURCE_DIR}/graphics"
+    "${CMAKE_SOURCE_DIR}/view"
+    "${CMAKE_SOURCE_DIR}/model"
+    "${CMAKE_SOURCE_DIR}/controller"
     ${SFML_INCLUDE_DIRS}
 )
 
