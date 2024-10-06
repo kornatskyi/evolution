@@ -8,8 +8,8 @@
 #include <memory>
 #include "Renderer.h"
 
-int main()
-{
-	render();
-	return 0;
+
+int main() {
+  render();
+  return 0;
 }

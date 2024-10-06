@@ -1,5 +1,5 @@
 #pragma once
-#include <World.h>
+#include <Environment.h>
 
 class SimulationController
 {
@@ -9,5 +9,5 @@ class SimulationController
   void update();
 
 private:
-  World *world;
+  Environment *world;
 };
