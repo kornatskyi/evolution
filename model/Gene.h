@@ -2,7 +2,7 @@
 
 class Gene{
   public:
-    Neuron Input;
+    // Neuron Input;
     unsigned Weight;
-    Neuron Output;
+    // Neuron Output;
 };

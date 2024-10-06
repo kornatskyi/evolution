@@ -10,8 +10,8 @@ class Creature{
     unsigned FoodEaten;
     Position Position;
     Direction Facing;
-    Gene Genome[GENOME_SIZE];
-    Brain Brain;
+    // Gene Genome[GENOME_SIZE];
+    // Brain Brain;
     
 
 };
