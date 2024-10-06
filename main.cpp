@@ -9,9 +9,7 @@
 #include "Renderer.h"
 
 
-
-
 int main() {
-	render();
-	return 0;
+  render();
+  return 0;
 }

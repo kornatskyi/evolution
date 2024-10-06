@@ -1,0 +1,84 @@
+environment
+  food
+
+
+creature
+  int foodEaten
+  Position position
+  direction facing
+  Gene[GENOME_SIZE] genome
+  Brain brain
+
+Gene
+  neuron* input
+  int weight
+  neuron* output
+
+Position
+ int x
+ int y
+
+enum Direction
+  north (pos y)
+  east (pos x)
+  south (neg y)
+  west (neg x)
+
+Brain
+  neuron ptr array afferent
+
+do we need a special interface for neurons generally or just neuron-inputtable ones?
+
+SensoryNeuron (Afferent Neuron)
+  axon axon
+  something about its sensory input?
+
+Interneuron
+  input can be Afferent or another central
+
+MotorNeuron (Efferent Neuron)
+  output has some effect (move, etc)
+  input from afferent or central
+  
+Axon
+  float weight
+  neuron* target
+
+
+
+
+
+when applying stimulus to a brain, we need it to efficiently
+apply only environmental parameters for which the brain has 
+sensory neurons. How to do this?
+things like chemical gradients need only be computed for points
+where creatures exist. we don't need some massive array of data
+representing environmental state in every position (though we do
+need some sort of "map" which can describe locations of food, obstacles, etc)
+
+some sort of enum mapping to an environmental param to the neuron type?
+
+when an output neuron fires, the organism tries to interact with the environment
+should the environment process these actions? environment needs to be re-entrant
+
+for the simplest case, the environment isn't an entity, and is just static info including
+min/max x
+min/max y
+food location(s)
+
+do some environment class
+ - creatures belong to environment (reference)
+
+
+
+
+projects
+------
+simulation (no graphics)
+graphical sim (run with simulation)
+... visualizing data after the fact
+
+minimum start: make a creature which just has position, might move randomly
+maybe environment
+
+genes/neural net comes later
