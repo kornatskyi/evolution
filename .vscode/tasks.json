@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Configure evolution",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "-S", ".", "-B", "build"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Configure the evolution project using CMake"
+    },
+    {
+      "label": "Build evolution",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--build", "build", "--config", "Debug"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "dependsOn": "Configure evolution",
+      "detail": "Build the evolution project using CMake"
+    }
+  ]
+}
