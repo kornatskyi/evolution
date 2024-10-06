@@ -1,10 +1,9 @@
 #include "UI.h"
 
-
 UI::UI()
 {
 	// Load font
-	if (!font.loadFromFile("assets\\fonts\\3270MediumNerdFontCompleteMono.ttf"))
+	if (!font.loadFromFile(std::filesystem::absolute("assets\\fonts\\3270MediumNerdFontCompleteMono.ttf").string()))
 	{
 		throw std::runtime_error("Failed to load font");
 	}
@@ -21,8 +20,8 @@ std::unique_ptr<sf::Text> UI::createText(std::string text, sf::Vector2f p)
 	return t;
 }
 
-void UI::draw(sf::RenderTarget& target,
-	sf::RenderStates states) const
+void UI::draw(sf::RenderTarget &target,
+							sf::RenderStates states) const
 {
 	target.draw(*justSomeText, states);
 }
