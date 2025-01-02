@@ -5,6 +5,10 @@ project(evolution)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Make it a debug config
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+
 # Set the path to SFML
 set(SFML_DIR "${CMAKE_SOURCE_DIR}/lib/SFML-3.0.0/lib/cmake/SFML")
 
