@@ -12,6 +12,7 @@ UI::UI()
   justSomeText = createText("Just some text!", sf::Vector2f(10, 10));
 }
 
+
 std::unique_ptr<sf::Text> UI::createText(std::string text, sf::Vector2f p)
 {
   auto t = this->initText();
