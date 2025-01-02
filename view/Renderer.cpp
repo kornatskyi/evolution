@@ -17,6 +17,7 @@ public:
     oss << std::fixed << std::setprecision(1) << currentFps;
     fpsToDraw = oss.str();
     fpsRenderPeriod = 0; // reset renderer period
+    return fpsToDraw;
   }
 };
 
