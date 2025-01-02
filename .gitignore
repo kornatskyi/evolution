@@ -35,6 +35,7 @@
 
 .vs
 x64
-lib/SFML-2.6.1
+lib/SFML-3.0.0
 
 build/
+CMakeFiles

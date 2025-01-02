@@ -4,7 +4,7 @@
 void render()
 {
   // Create a window
-  sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT),
+  sf::RenderWindow window(sf::VideoMode({WIDTH, HEIGHT}),
                           "Evolution 🧬", sf::Style::Titlebar);
   window.setVerticalSyncEnabled(true); // sync with graphics card refresh rate
   window.setPosition(sf::Vector2i(100, 400));
@@ -25,11 +25,13 @@ void render()
   {
     clock.restart();
     // handle events
-    sf::Event event;
-    while (window.pollEvent(event))
+    sf::Event event();
+    while (const std::optional event = window.pollEvent())
     {
-      if (event.type == sf::Event::Closed)
+      if (event->is<sf::Event::Closed>())
+      {
         window.close();
+      }
     }
 
     window.clear();
@@ -37,7 +39,6 @@ void render()
     /////////////////////////////////////////////////
     // All updates should be happening in this block.
     /////////////////////////////////////////////////
-
     window.draw(ui);
 
     if (fpsRenderPeriod > 1)

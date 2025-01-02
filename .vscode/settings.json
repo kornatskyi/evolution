@@ -1,6 +1,5 @@
 {
   "files.associations": {
-    "*.ejs": "html",
     "*.jsx": "javascriptreact",
     "*.js": "javascript",
     "*.rmd": "markdown",
@@ -14,7 +13,9 @@
     "*.wasm": "wasm",
     "*.asm": "asm-intel-x86-generic",
     ".env": "env",
+    "*.ejs": "html",
     "iostream": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "optional": "cpp"
   }
 }

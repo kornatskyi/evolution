@@ -6,10 +6,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Set the path to SFML
-set(SFML_DIR "${CMAKE_SOURCE_DIR}/lib/SFML-2.6.1/lib/cmake/SFML")
+set(SFML_DIR "${CMAKE_SOURCE_DIR}/lib/SFML-3.0.0/lib/cmake/SFML")
 
 # Find the SFML package
-find_package(SFML 2.6 COMPONENTS graphics window system audio REQUIRED)
+find_package(SFML 3.0 REQUIRED COMPONENTS Graphics Window System Audio)
 
 # Collect all .cpp files in the 'view' folder
 file(GLOB VIEW_SRC
@@ -47,7 +47,7 @@ add_custom_command(TARGET evolution POST_BUILD
 )
 
 # Link SFML libraries
-target_link_libraries(evolution PRIVATE sfml-graphics sfml-window sfml-system sfml-audio)
+target_link_libraries(evolution PRIVATE SFML::Graphics SFML::Window SFML::System SFML::Audio)
 
 # Copy SFML DLLs after build (Windows specific)
 if(WIN32)
