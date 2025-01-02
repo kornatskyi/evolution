@@ -7,9 +7,13 @@
 #include <filesystem>
 #include <memory>
 #include "Renderer.h"
+#include "Environment.h"
 
 
 int main() {
-  render();
+
+  Environment environement;
+
+  render(environement);
   return 0;
 }

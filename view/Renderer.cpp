@@ -1,5 +1,7 @@
 #include "Renderer.h"
+#include "Environment.h"
 #include "UI.h"
+#include "DrawableEnvironment.h"
 
 class FPSMessurer
 {
@@ -21,7 +23,7 @@ public:
   }
 };
 
-void render()
+void render(Environment environement)
 {
   // Create a window
   sf::RenderWindow window(sf::VideoMode({WIDTH, HEIGHT}),
@@ -35,6 +37,9 @@ void render()
   // Init UI class
   UI ui;
   auto fpsText = ui.createText("FPS: " + fpsMessurer.fpsToDraw, sf::Vector2f(WIDTH - 200, 10));
+
+  // World
+  DrawableEnvironment drawableEnvironment(environement);
 
   // run the main loop
   while (window.isOpen())
@@ -55,6 +60,7 @@ void render()
     // All updates should be happening in this block.
     /////////////////////////////////////////////////
     window.draw(ui);
+    window.draw(drawableEnvironment);
 
     if (fpsMessurer.fpsRenderPeriod > 1)
     {

@@ -24,8 +24,9 @@ file(GLOB CONTROLLER_SRC
     "controller/*.cpp"
 )
 # Collect all .cpp files in the 'model' folder
-file(GLOB MODEL_SRC
-    "model/*.cpp"
+file(GLOB_RECURSE MODEL_SRC
+    "${CMAKE_SOURCE_DIR}/model/*.cpp"
+    "${CMAKE_SOURCE_DIR}/model/Creatures/*.cpp"
 )
 
 # Add the executable
@@ -40,6 +41,7 @@ add_executable(evolution
 target_include_directories(evolution PRIVATE
     "${CMAKE_SOURCE_DIR}/view"
     "${CMAKE_SOURCE_DIR}/model"
+    "${CMAKE_SOURCE_DIR}/model/Creatures"
     "${CMAKE_SOURCE_DIR}/controller"
     ${SFML_INCLUDE_DIRS}
 )

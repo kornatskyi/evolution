@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Position.h";
+#include "Position.h"
 
-class Food{
-  public:
-    Position Position;
+class Food
+{
+public:
+  Position position;
 };
