@@ -7,6 +7,6 @@ Environment::Environment()
   // Generate creatures
   for (int i = 0; i < 10; i++)
   {
-    population.push_back(Creature(Position::getRandomPosition(X_BOUNDARY, Y_BOUNDARY)));
+    population.push_back(Creature(Position::getRandomPosition(ModelConfig::WIDTH, ModelConfig::HEIGHT)));
   }
 }

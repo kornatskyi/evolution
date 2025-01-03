@@ -1,6 +1,7 @@
 
 #include "DrawableEnvironment.h"
 #include "Environment.h"
+#include "ViewConfig.h"
 
 DrawableEnvironment::DrawableEnvironment(Environment &environment) : environment(environment)
 {
@@ -21,10 +22,12 @@ void DrawableEnvironment::draw(sf::RenderTarget &target,
   // Draw each creature
   for (const Creature &creature : environment.population)
   {
-    // Set position (using Vector2f for SFML 3.0)
-    creatureShape.setPosition(sf::Vector2f(
+    auto creatureRenderingPosition = sf::Vector2f(
         static_cast<float>(creature.position.x),
-        static_cast<float>(creature.position.y)));
+        static_cast<float>(creature.position.y));
+
+    // Set position (using Vector2f for SFML 3.0)
+    creatureShape.setPosition(creatureRenderingPosition);
 
     // Set rotation based on direction
     float rotation = 0;
