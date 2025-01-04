@@ -77,6 +77,7 @@
     "cinttypes": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp",
-    "__nullptr": "cpp"
+    "__nullptr": "cpp",
+    "__node_handle": "cpp"
   }
 }
