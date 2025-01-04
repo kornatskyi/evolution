@@ -1,4 +1,3 @@
-
 #include "DrawableEnvironment.h"
 #include "Environment.h"
 
@@ -6,77 +5,108 @@ DrawableEnvironment::DrawableEnvironment(Environment &environment) : environment
 {
 }
 
-/// @brief Modifies vectorToShift by shifting it along X and Y axes by the values in shiftingVector.
-/// @param vectorToShift - vector to be modified.
-/// @param shiftingVector - vector indicating how much to shift (default is {100, 0}).
-/// @return - new shifted vector.
-sf::Vector2f shift(sf::Vector2f vectorToShift, sf::Vector2f shiftingVector = sf::Vector2f(200, 0))
+void drawGrid(sf::RenderTarget &target,
+              sf::RenderStates states)
 {
-  vectorToShift.x += shiftingVector.x;
-  vectorToShift.y += shiftingVector.y;
-  return vectorToShift;
+  const float LINE_THICKNESS = 1;
+  const unsigned NUM_OF_CELLS_IN_A_ROW = ModelConfig::WIDTH / ModelConfig::CELL_SIZE;
+
+  sf::VertexArray vertices(sf::PrimitiveType::Triangles);
+
+  for (size_t i = 0; i < NUM_OF_CELLS_IN_A_ROW; i++)
+  {
+
+    float point = i * (ModelConfig::WIDTH / NUM_OF_CELLS_IN_A_ROW);
+    sf::Vertex topLeft, bottomLeft, topRight, bottmRight;
+
+    topLeft.color = sf::Color(255, 255, 255, 128);
+    topRight.color = sf::Color(255, 255, 255, 128);
+    bottomLeft.color = sf::Color(255, 255, 255, 128);
+    bottmRight.color = sf::Color(255, 255, 255, 128);
+
+    // Vertical lines
+    topLeft.position = sf::Vector2f(point, 0);
+    topRight.position = sf::Vector2f(point + LINE_THICKNESS, 0);
+    bottomLeft.position = sf::Vector2f(point, ModelConfig::HEIGHT);
+    bottmRight.position = sf::Vector2f(point + LINE_THICKNESS, ModelConfig::HEIGHT);
+
+    vertices.append(topLeft);
+    vertices.append(bottomLeft);
+    vertices.append(topRight);
+    vertices.append(topRight);
+    vertices.append(bottomLeft);
+    vertices.append(bottmRight);
+
+    point = i * (ModelConfig::HEIGHT / NUM_OF_CELLS_IN_A_ROW);
+
+    // Horisontal lines
+    topLeft.position = sf::Vector2f(0, point);
+    topRight.position = sf::Vector2f(ModelConfig::WIDTH, point);
+    bottomLeft.position = sf::Vector2f(0, point - LINE_THICKNESS);
+    bottmRight.position = sf::Vector2f(ModelConfig::WIDTH + LINE_THICKNESS, point - LINE_THICKNESS);
+
+    vertices.append(topLeft);
+    vertices.append(bottomLeft);
+    vertices.append(topRight);
+    vertices.append(topRight);
+    vertices.append(bottomLeft);
+    vertices.append(bottmRight);
+  }
+
+  target.draw(vertices, states);
+
+  // Draw bounding box
+  sf::RectangleShape topLine({ModelConfig::WIDTH, LINE_THICKNESS});
+  topLine.setPosition((sf::Vector2f({0, 0})));
+  target.draw(topLine, states);
+
+  sf::RectangleShape bottomLine({ModelConfig::WIDTH, LINE_THICKNESS});
+  bottomLine.setPosition((sf::Vector2f({0.f, ModelConfig::HEIGHT})));
+  target.draw(bottomLine, states);
+
+  sf::RectangleShape leftLine({LINE_THICKNESS, ModelConfig::HEIGHT});
+  leftLine.setPosition((sf::Vector2f({0.f, 0.f})));
+  target.draw(leftLine, states);
+
+  sf::RectangleShape rightLine({LINE_THICKNESS, ModelConfig::HEIGHT});
+  rightLine.setPosition((sf::Vector2f({ModelConfig::WIDTH - LINE_THICKNESS, 0.f})));
+  target.draw(rightLine, states);
 }
 
 void DrawableEnvironment::draw(sf::RenderTarget &target,
                                sf::RenderStates states) const
 {
-  const int LINE_THICKNESS = 1;
 
-  // Draw bounding box
-  sf::RectangleShape topLine({ModelConfig::WIDTH, LINE_THICKNESS});
-  topLine.setPosition(shift(sf::Vector2f({0, 0})));
-  target.draw(topLine, states);
+  // Apply the origin shift to RenderStates
+  sf::Transform transform;
+  transform.translate(sf::Vector2f(300, 0));
+  states.transform *= transform;
 
-  sf::RectangleShape bottomLine({ModelConfig::WIDTH, LINE_THICKNESS});
-  bottomLine.setPosition(shift(sf::Vector2f({0.f, ModelConfig::HEIGHT})));
-  target.draw(bottomLine, states);
-
-  sf::RectangleShape leftLine({LINE_THICKNESS, ModelConfig::HEIGHT});
-  leftLine.setPosition(shift(sf::Vector2f({0.f, 0.f})));
-  target.draw(leftLine, states);
-
-  sf::RectangleShape rightLine({LINE_THICKNESS, ModelConfig::HEIGHT});
-  rightLine.setPosition(shift(sf::Vector2f({ModelConfig::WIDTH - LINE_THICKNESS, 0.f})));
-  target.draw(rightLine, states);
+  // Draw grid
+  drawGrid(target, states);
 
   // Create creature shape
-  sf::ConvexShape creatureShape;
-  creatureShape.setPointCount(3);
-  creatureShape.setPoint(0, sf::Vector2f(0, -5));
-  creatureShape.setPoint(1, sf::Vector2f(-4, 5));
-  creatureShape.setPoint(2, sf::Vector2f(4, 5));
-  creatureShape.setFillColor(sf::Color::Green);
+
+  sf::VertexArray creaturesToRender(sf::PrimitiveType::Triangles);
 
   // Draw each creature
   for (const Creature &creature : environment.population)
   {
-    auto creatureRenderingPosition = sf::Vector2f(
-        static_cast<float>(creature.position.x),
-        static_cast<float>(creature.position.y));
+    sf::Vertex topLeft, bottomLeft, topRight, bottmRight;
 
-    // Set position (using Vector2f for SFML 3.0)
-    creatureShape.setPosition(shift(sf::Vector2f(creatureRenderingPosition)));
+    // Create square shape for each creature
+    topLeft.position = sf::Vector2f({static_cast<float>(creature.position.x), static_cast<float>(creature.position.y)});
+    topRight.position = sf::Vector2f({static_cast<float>(creature.position.x) + ModelConfig::CELL_SIZE, static_cast<float>(creature.position.y)});
+    bottomLeft.position = sf::Vector2f({static_cast<float>(creature.position.x), static_cast<float>(creature.position.y) - ModelConfig::CELL_SIZE});
+    bottmRight.position = sf::Vector2f({static_cast<float>(creature.position.x) + ModelConfig::CELL_SIZE, static_cast<float>(creature.position.y) - ModelConfig::CELL_SIZE});
 
-    // Set rotation based on direction
-    float rotation = 0;
-    switch (creature.facing)
-    {
-    case Direction::North:
-      rotation = 0;
-      break;
-    case Direction::East:
-      rotation = 90;
-      break;
-    case Direction::South:
-      rotation = 180;
-      break;
-    case Direction::West:
-      rotation = 270;
-      break;
-    }
-    // Use degrees() for SFML 3.0
-    creatureShape.setRotation(sf::degrees(rotation));
+    creaturesToRender.append(topLeft);
+    creaturesToRender.append(bottomLeft);
+    creaturesToRender.append(topRight);
+    creaturesToRender.append(topRight);
+    creaturesToRender.append(bottomLeft);
+    creaturesToRender.append(bottmRight);
 
-    target.draw(creatureShape, states);
+    target.draw(creaturesToRender, states);
   }
 }

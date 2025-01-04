@@ -4,6 +4,7 @@ namespace ModelConfig
 {
 
   // General
-  constexpr int WIDTH = 1000;
-  constexpr int HEIGHT = 1000;
+  constexpr unsigned short WIDTH = 1000;
+  constexpr unsigned short HEIGHT = WIDTH;
+  constexpr unsigned short CELL_SIZE = 10;
 }

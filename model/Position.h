@@ -4,9 +4,9 @@
 class Position
 {
 public:
-  Position(unsigned x, unsigned y);
-  unsigned x;
-  unsigned y;
+  Position(unsigned short x, unsigned short y);
+  unsigned short x;
+  unsigned short y;
 
-  static Position getRandomPosition(unsigned xBoundary, unsigned yBoundary);
+  static Position getRandomPosition(unsigned short xBoundary, unsigned short yBoundary);
 };
