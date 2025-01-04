@@ -4,6 +4,8 @@
 
 class Food
 {
+
 public:
+  Food(Position position);
   Position position;
 };

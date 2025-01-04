@@ -13,4 +13,5 @@ public:
   static const int FOOD_QUANTITY = 10;
 
   std::vector<Creature> population;
+  std::vector<Food> foods;
 };
