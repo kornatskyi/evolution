@@ -2,6 +2,7 @@
 #include "Environment.h"
 #include "UI.h"
 #include "DrawableEnvironment.h"
+#include "ViewConfig.h"
 
 class FPSMessurer
 {
@@ -26,7 +27,7 @@ public:
 void render(Environment environement)
 {
   // Create a window
-  sf::RenderWindow window(sf::VideoMode({WIDTH, HEIGHT}),
+  sf::RenderWindow window(sf::VideoMode({ViewConfig::WINDOW_WIDTH, ViewConfig::WINDOW_HEIGHT}),
                           "Evolution 🧬", sf::Style::Titlebar);
   window.setVerticalSyncEnabled(true); // sync with graphics card refresh rate
   window.setPosition(sf::Vector2i(100, 0));
@@ -36,7 +37,7 @@ void render(Environment environement)
 
   // Init UI class
   UI ui;
-  auto fpsText = ui.createText("FPS: " + fpsMessurer.fpsToDraw, sf::Vector2f(WIDTH - 200, 10));
+  auto fpsText = ui.createText("FPS: " + fpsMessurer.fpsToDraw, sf::Vector2f(ViewConfig::WINDOW_WIDTH - 200, 10));
 
   // World
   DrawableEnvironment drawableEnvironment(environement);

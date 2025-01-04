@@ -24,6 +24,11 @@ std::unique_ptr<sf::Text> UI::createText(std::string text, sf::Vector2f p)
 void UI::draw(sf::RenderTarget &target,
               sf::RenderStates states) const
 {
+
+  // sf::RectangleShape line({});
+
+
+
   target.draw(*justSomeText, states);
 }
 

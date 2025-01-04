@@ -10,7 +10,4 @@
 #include "UI.h"
 #include "Environment.h"
 
-constexpr int WIDTH = 1600;
-constexpr int HEIGHT = 900;
-
 void render(Environment environement);

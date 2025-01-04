@@ -15,11 +15,13 @@ class UI : public sf::Drawable
 public:
   UI();
 
-  std::unique_ptr<sf::Text> createText(std::string text, sf::Vector2f p);
+  std::
+      unique_ptr<sf::Text>
+      createText(std::string text, sf::Vector2f p);
 
 protected:
   void draw(sf::RenderTarget &target,
-                    sf::RenderStates states) const override;
+            sf::RenderStates states) const override;
 
 private:
   std::unique_ptr<sf::Text> initText();
